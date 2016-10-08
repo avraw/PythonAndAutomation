@@ -1,0 +1,378 @@
+#Notes from Automating the Boring Stuff
+
+
+** exponent
+// -> Integer Division
+Precedence
+
+The ** operator is evaluated first;
+the * , / , // , and % operators are evaluated next, from left to right; and the + and - operators are evaluated last (also from left to right).
+
+Example:
+>>> 'Alice' * 5
+'AliceAliceAliceAliceAlice'
+
+The following line is called a comment.
+# This program says hello and asks for my name.
+
+#Input from the user
+The input() function waits for the user to type some text on the keyboard and press enter .
+myName = input()
+This function call evaluates to a string equal to the user’s text, and the previous line of code assigns the myName variable to this string value.
+
+#length of a string
+You can pass the len() function a string value (or a variable containing a string), and the function evaluates to the integer value of the number of characters in that string.
+print('The length of your name is:')
+print(len(myName))
+
+The str() , int() , and float() functions will evaluate to the string, integer, and floating-point forms of the value you pass, respectively.
+
+
+#Examples
+>>> 42 == '42'
+False
+>>> 42 == 42.0
+True
+>>> 42.0 == 0042.000
+True
+
+While
+expressions like 4 < 5 aren’t Boolean values, they are expressions that evaluate down to Boolean values.
+>>> (4 < 5) and (5 < 6)
+True
+
+After any math and comparison operators evaluate, Python evaluates the not operators first, then the and operators, and then the or  operators.
+
+When the program execution reaches a continue statement, the program execution immediately jumps back to the start of the loop and reevaluates the loop’s condition. (This is also what happens when the execution reaches the end of the loop.)
+
+When used in conditions, 0 , 0.0 , and '' (the empty string) are considered False , while all other values are considered True .
+
+range(5) results in five iterations through the clause, with i being set to 0 , then 1 , then 2 , then 3 , and then 4 . The variable i will go up to, but will not include, the integer passed to range() .
+
+for i in range(12, 16):
+print(i)
+
+The first argument will be where the for loop’s variable starts, and the second argument will be up to, but not including, the number to stop at.
+
+for i in range(0, 10, 2):
+print(i)
+
+The range() function can also be called with three arguments. The first two arguments will be the start and stop values, and the third will be the step argument. The step is the amount that the variable is increased by after each iteration.
+
+random module, which will give us access
+to the random.ranint() function.
+
+print(random.randint(1, 10))
+
+while random.randint(10, 1) causes an error
+
+you can cause the program to terminate, or exit, by
+calling the sys.exit() function. Since this function is in the sys module, you have to import sys before your program can use it.
+
+
+In Python there is a value called None , which represents the absence of a value. None is the only value of the NoneType data type. (Other programming languages might call this value null , nil , or undefined .) Just like the Boolean True and False values, None must be typed with a capital N.
+
+>>> spam = print('Hello!')
+Hello!
+>>> None == spam
+True
+
+Python adds return None to the end of any function definition with no return statement.
+
+print() function automatically adds a newline character to the end of the string it is passed.
+
+print('Hello', end='')
+print('World')
+the output would look like this:
+HelloWorld
+
+pass multiple string values to print() , the function will automatically separate them with a single space.
+
+print('cats', 'dogs', 'mice')
+cats dogs mice
+
+print('cats', 'dogs', 'mice', sep=',')
+cats,dogs,mice
+
+
+Parameters and variables that are assigned in a called function are said to exist in that function’s local scope. Variables that are assigned outside all functions are said to exist in the global scope.
+
+
+There is only one global scope, and it is created when your program begins. When your program terminates, the global scope is destroyed, and all its variables are forgotten.
+
+A local scope is created whenever a function is called. Any variables
+assigned in this function exist within the local scope. When the function
+returns, the local scope is destroyed, and these variables are forgotten. The
+next time you call this function, the local variables will not remember the
+values stored in them from the last time the function was called.
+
+
+Scopes matter for several reasons:	
+Code in the global scope cannot use any local variables.
+However, a local scope can access global variables.
+Code in a function’s local scope cannot use variables in any other
+local scope.
+You can use the same name for different variables if they are in dif-
+ferent scopes. That is, there can be a local variable named spam and a
+global variable also named spam .
+
+The upshot is that local variables in one function are completely sepa-
+rate from the local variables in another function.
+
+That means I can have local variables with the same name in different functions.
+
+If you need to modify a global variable from within a function, use the global
+statement.
+def spam():
+	global eggs
+	eggs = 'spam'
+eggs = 'global'
+spam()
+print(eggs)
+When you run this program, the final print() call will output this:
+spam
+
+
+There are four rules to tell whether a variable is in a local scope or
+global scope:
+1. If a variable is being used in the global scope (that is, outside of all
+functions), then it is always a global variable.
+2. If there is a global statement for that variable in a function, it is a global
+variable.
+3. Otherwise, if the variable is used in an assignment statement in the
+function, it is a local variable.
+4. But if the variable is not used in an assignment statement, it is a global
+variable.
+ 
+
+The code that
+could potentially have an error is put in a try clause.
+and have
+an except clause contain code to handle what happens when this error occurs.
+def spam(divideBy):
+try:
+return 42 / divideBy
+except ZeroDivisionError:
+print('Error: Invalid argument.')
+
+once the execution jumps to the code in the except clause, it does not return to the try
+clause. Instead, it just continues moving down as normal.
+
+lists them-
+selves can contain other lists, you can use them to
+arrange data into hierarchical structures.
+
+>> spam = [['cat', 'bat'], [10, 20, 30, 40, 50]]
+>>> spam[0]
+['cat', 'bat']
+>>> spam[0][1]
+'bat'
+>>> spam[1][4]
+50
+
+
+The integer value -1 refers to the last index in a list, the value -2
+refers to the second-to-last index in a list, and so on.
+>>> spam = ['cat', 'bat', 'rat', 'elephant']
+>>> spam[-1]
+'elephant'
+
+A slice goes up to, but will not
+include, the value at the second index.
+>>> spam = ['cat', 'bat', 'rat', 'elephant']
+>>> spam[0:4]
+['cat', 'bat', 'rat', 'elephant']
+>>> spam[:2]
+['cat', 'bat']
+>>> spam[1:]
+['bat', 'rat', 'elephant']
+>>> [1, 2, 3] + ['A', 'B', 'C']
+[1, 2, 3, 'A', 'B', 'C']
+>>> ['X', 'Y', 'Z'] * 3
+['X', 'Y', 'Z', 'X', 'Y', 'Z', 'X', 'Y', 'Z']
+>>> spam = [1, 2, 3]
+>>> spam = spam + ['A', 'B', 'C']
+>>> spam
+[1, 2, 3, 'A', 'B', 'C']
+
+The del statement will delete values at an index in a list. All of the values
+in the list after the deleted value will be moved up one index.
+>>> spam = ['cat', 'bat', 'rat', 'elephant']
+>>> del spam[2]
+>>> spam
+['cat', 'bat', 'elephant']
+
+>>> spam = ['hello', 'hi', 'howdy', 'heyas']
+>>> 'cat' in spam
+False
+also the not in operator
+
+The Multiple Assignment Trick
+>>> cat = ['fat', 'black', 'loud']
+>>> size, color, disposition = cat
+
+
+>>> spam = 'Hello'
+>>> spam += ' world!'
+>>> spam
+'Hello world!'
+
+A method is the same thing as a function, except it is “called on” a value.
+
+List values have an index() method that can be passed a value, and if that
+value exists in the list, the index of the value is returned. If the value isn’t
+in the list, then Python produces a ValueError error
+
+
+>>> spam = ['hello', 'hi', 'howdy', 'heyas']
+>>> spam.index('hello')
+0
+
+append() method call adds the argument to the end of
+the list. The insert() method can insert a value at any index in the list.
+The first argument to insert() is the index for the new value, and the sec-
+ond argument is the new value to be inserted.
+
+
+>>> spam = ['cat', 'dog', 'bat']
+>>> spam.append('moose')
+>>> spam
+['cat', 'dog', 'bat', 'moose']
+
+>>> spam = ['cat', 'dog', 'bat']
+>>> spam.insert(1, 'chicken')
+>>> spam
+['cat', 'chicken', 'dog', 'bat']
+
+The remove() method is passed the value to be removed from the list it is
+called on. Enter the following into the interactive shell:
+>>> spam = ['cat', 'bat', 'rat', 'elephant']
+>>> spam.remove('bat')
+>>> spam
+['cat', 'rat', 'elephant']
+
+
+>>> spam = [2, 5, 3.14, 1, -7]
+>>> spam.sort()
+>>> spam
+[-7, 1, 2, 3.14, 5]
+
+>>> spam.sort(reverse=True)
+>>> spam
+['elephants', 'dogs', 'cats', 'badgers', 'ants']
+
+sort() uses “ASCIIbetical order” rather than actual alphabetical
+order for sorting strings. This means uppercase letters come before lower-
+case letters.
+
+To sort in regular alphabetical order
+>>> spam = ['a', 'z', 'A', 'Z']
+>>> spam.sort(key=str.lower)
+>>> spam
+['a', 'A', 'z', 'Z']
+
+
+You can also split up a single instruction across multiple lines using the \
+line continuation character at the end. Think of \ as saying, “This instruction
+continues on the next line.” The indentation on the line after a \ line continua-
+tion is not significant. For example, the following is valid Python code:
+print('Four score and seven ' + \
+'years ago...')
+
+Using list functions is Strings
+>>> name = 'Zophie'
+>>> name[0]
+'Z'
+>>> name[-2]
+'i'
+>>> name[0:4]
+'Zoph'
+>>> 'Zo' in name
+True
+>>> 'z' in name
+False
+>>> 'p' not in name
+False
+
+But lists and strings are different in an important way. A list value is a mutable
+data type: It can have values added, removed, or changed. However, a string
+is immutable: It cannot be changed. Trying to reassign a single character in
+a string results in a TypeError error
+
+The proper way to “mutate” a string is to use slicing and concatenation
+to build a new string by copying from parts of the old string.
+
+Although a list value is mutable, the second line in the following code
+does not modify the list eggs :
+>>>
+>>>
+>>>
+[4,
+eggs = [1, 2, 3]
+eggs = [4, 5, 6]
+eggs
+5, 6]
+The list value in eggs isn’t being changed here; rather, an entirely new
+and different list value ( [4, 5, 6] ) is overwriting the old list value ( [1, 2, 3] ).
+
+If you wanted to actually modify the original list in eggs to contain
+[4, 5, 6] , you would have to do something like this:
+eggs = [1, 2, 3]
+del eggs[2]
+del eggs[1]
+del eggs[0]
+eggs.append(4)
+eggs.append(5)
+eggs.append(6)
+eggs
+5, 6]
+
+tuples are typed with parentheses, ( and ) , instead of square
+brackets, [ and ] .
+But the main way that tuples are different from lists is that tuples,
+like strings, are immutable. Tuples cannot have their values modified,
+appended, or removed.
+
+
+If you have only one value in your tuple, you can indicate this by placing
+a trailing comma after the value inside the parentheses. Otherwise, Python
+will think you’ve just typed a value inside regular parentheses. The comma
+is what lets Python know this is a tuple value.
+
+>>> type(('hello',))
+<class 'tuple'>
+>>> type(('hello'))
+<class 'str'>
+
+You can use tuples to convey to anyone reading your code that you
+don’t intend for that sequence of values to change. If you need an ordered
+sequence of values that never changes, use a tuple. A second benefit of
+using tuples instead of lists is that, because they are immutable and their
+contents don’t change, Python can implement some optimizations that
+make code using tuples slightly faster than code using lists.
+
+converting types
+>>> tuple(['cat', 'dog', 5])
+('cat', 'dog', 5)
+>>> list(('cat', 'dog', 5))
+['cat', 'dog', 5]
+>>> list('hello')
+['h', 'e', 'l', 'l', 'o']
+
+When you assign a list to a variable, you
+are actually assigning a list reference to the variable. A reference is a value
+that points to some bit of data, and a list reference is a value that points to a
+list.
+
+>>> spam = [0, 1, 2, 3, 4, 5]
+>>> cheese = spam
+>>> cheese[1] = 'Hello!'
+>>> spam
+[0, 'Hello!', 2, 3, 4, 5]
+>>> cheese
+[0, 'Hello!', 2, 3, 4, 5]
+
+Python uses references whenever variables must
+store values of mutable data types, such as lists or dictionaries. For values
+of immutable data types such as strings, integers, or tuples, Python vari-
+ables will store the value itself.
