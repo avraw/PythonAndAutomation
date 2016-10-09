@@ -6,7 +6,8 @@
 Precedence
 
 The ** operator is evaluated first;
-the * , / , // , and % operators are evaluated next, from left to right; and the + and - operators are evaluated last (also from left to right).
+the * , / , // , and % operators are evaluated next, from left to right; 
+and the + and - operators are evaluated last (also from left to right).
 
 Example:
 >>> 'Alice' * 5
@@ -18,14 +19,17 @@ The following line is called a comment.
 #Input from the user
 The input() function waits for the user to type some text on the keyboard and press enter .
 myName = input()
-This function call evaluates to a string equal to the user’s text, and the previous line of code assigns the myName variable to this string value.
+This function call evaluates to a string equal to the user’s text, 
+and the previous line of code assigns the myName variable to this string value.
 
 #length of a string
-You can pass the len() function a string value (or a variable containing a string), and the function evaluates to the integer value of the number of characters in that string.
+You can pass the len() function a string value (or a variable containing a string), 
+and the function evaluates to the integer value of the number of characters in that string.
 print('The length of your name is:')
 print(len(myName))
 
-The str() , int() , and float() functions will evaluate to the string, integer, and floating-point forms of the value you pass, respectively.
+The str() , int() , and float() functions will evaluate to the string, integer, 
+and floating-point forms of the value you pass, respectively.
 
 
 #Examples
@@ -41,23 +45,31 @@ expressions like 4 < 5 aren’t Boolean values, they are expressions that evalua
 >>> (4 < 5) and (5 < 6)
 True
 
-After any math and comparison operators evaluate, Python evaluates the not operators first, then the and operators, and then the or  operators.
+After any math and comparison operators evaluate, Python evaluates the not operators first, 
+then the and operators, and then the or  operators.
 
-When the program execution reaches a continue statement, the program execution immediately jumps back to the start of the loop and reevaluates the loop’s condition. (This is also what happens when the execution reaches the end of the loop.)
+When the program execution reaches a continue statement, the program execution immediately jumps back 
+to the start of the loop and reevaluates the loop’s condition. 
+(This is also what happens when the execution reaches the end of the loop.)
 
-When used in conditions, 0 , 0.0 , and '' (the empty string) are considered False , while all other values are considered True .
+When used in conditions, 0 , 0.0 , and '' (the empty string) are considered False , 
+while all other values are considered True .
 
-range(5) results in five iterations through the clause, with i being set to 0 , then 1 , then 2 , then 3 , and then 4 . The variable i will go up to, but will not include, the integer passed to range() .
+range(5) results in five iterations through the clause, with i being set to 0 , 
+then 1 , then 2 , then 3 , and then 4 . The variable i will go up to, but will not include, the integer passed to range() .
 
 for i in range(12, 16):
 print(i)
 
-The first argument will be where the for loop’s variable starts, and the second argument will be up to, but not including, the number to stop at.
+The first argument will be where the for loop’s variable starts, and the second argument will be up to, 
+but not including, the number to stop at.
 
 for i in range(0, 10, 2):
 print(i)
 
-The range() function can also be called with three arguments. The first two arguments will be the start and stop values, and the third will be the step argument. The step is the amount that the variable is increased by after each iteration.
+The range() function can also be called with three arguments. The first two arguments will be 
+the start and stop values, and the third will be the step argument. 
+The step is the amount that the variable is increased by after each iteration.
 
 random module, which will give us access
 to the random.ranint() function.
@@ -70,7 +82,9 @@ you can cause the program to terminate, or exit, by
 calling the sys.exit() function. Since this function is in the sys module, you have to import sys before your program can use it.
 
 
-In Python there is a value called None , which represents the absence of a value. None is the only value of the NoneType data type. (Other programming languages might call this value null , nil , or undefined .) Just like the Boolean True and False values, None must be typed with a capital N.
+In Python there is a value called None , which represents the absence of a value. 
+None is the only value of the NoneType data type. (Other programming languages might call this value null , nil , or undefined .) 
+Just like the Boolean True and False values, None must be typed with a capital N.
 
 >>> spam = print('Hello!')
 Hello!
@@ -95,10 +109,12 @@ print('cats', 'dogs', 'mice', sep=',')
 cats,dogs,mice
 
 
-Parameters and variables that are assigned in a called function are said to exist in that function’s local scope. Variables that are assigned outside all functions are said to exist in the global scope.
+Parameters and variables that are assigned in a called function are said to exist in that function’s local scope. 
+Variables that are assigned outside all functions are said to exist in the global scope.
 
 
-There is only one global scope, and it is created when your program begins. When your program terminates, the global scope is destroyed, and all its variables are forgotten.
+There is only one global scope, and it is created when your program begins. 
+When your program terminates, the global scope is destroyed, and all its variables are forgotten.
 
 A local scope is created whenever a function is called. Any variables
 assigned in this function exist within the local scope. When the function
@@ -376,3 +392,227 @@ Python uses references whenever variables must
 store values of mutable data types, such as lists or dictionaries. For values
 of immutable data types such as strings, integers, or tuples, Python vari-
 ables will store the value itself.
+
+When a function is called, the values of the argu-
+ments are copied to the parameter variables. For lists and dictionaries this means a copy of the reference
+is used for the parameter.
+
+copy.copy() , can be used
+to make a duplicate copy of a mutable value like a list or dictionary, not just a
+copy of a reference.
+
+>>> import copy
+>>> spam = ['A', 'B', 'C', 'D']
+>>> cheese = copy.copy(spam)
+>>> cheese[1] = 42
+>>> spam
+['A', 'B', 'C', 'D']
+>>> cheese
+['A', 42, 'C', 'D']
+
+If the list you need to copy contains lists, then use the copy.deepcopy()
+function instead of copy.copy() . The deepcopy() function will copy these
+inner lists as well.
+
+unlike indexes for
+lists, indexes for dictionaries can use many different data types, not just
+integers. Indexes for dictionaries are called keys, and a key with its associ-
+ated value is called a key-value pair.
+In code, a dictionary is typed with braces, {} .
+
+>>> myCat = {'size': 'fat', 'color': 'gray', 'disposition': 'loud'}
+>>> myCat['size']
+'fat'
+>>> 'My cat has ' + myCat['color'] + ' fur.'
+'My cat has gray fur.'
+
+Using the keys() , values() , and items() methods, a for loop can iterate
+over the keys, values, or key-value pairs in a dictionary, respectively. Notice
+that the values in the dict_items value returned by the items() method are
+tuples of the key and value.
+If you want a true list from one of these methods, pass its list-like return
+value to the list() function. Enter the following into the interactive shell:
+
+>>> spam = {'color': 'red', 'age': 42}
+>>> spam.keys()
+dict_keys(['color', 'age'])
+>>> list(spam.keys())
+['color', 'age']
+
+You can also use the multiple assignment trick in a for loop to assign
+the key and value to separate variables. Enter the following into the inter­
+active shell:
+>>> spam = {'color': 'red', 'age': 42}
+>>> for k, v in spam.items():
+print('Key: ' + k + ' Value: ' + str(v))
+Key: age Value: 42
+Key: color Value: red
+
+
+>>> spam = {'name': 'Zophie', 'age': 7}
+>>> 'name' in spam.keys()
+True
+>>> 'Zophie' in spam.values()
+True
+
+
+dictionaries have a get() method that takes two
+arguments: the key of the value to retrieve and a fallback value to return if
+that key does not exist.
+
+>>> picnicItems = {'apples': 5, 'cups': 2}
+>>> 'I am bringing ' + str(picnicItems.get('cups', 0)) + ' cups.'
+'I am bringing 2 cups.'
+>>> 'I am bringing ' + str(picnicItems.get('eggs', 0)) + ' eggs.'
+'I am bringing 0 eggs.'
+
+The setdefault() method offers a way to do this in one line of code. The
+first argument passed to the method is the key to check for, and the second
+argument is the value to set at that key if the key does not exist. If the key
+does exist, the setdefault() method returns the key’s value. Enter the follow-
+ing into the interactive shell:
+>>> spam = {'name': 'Pooka',
+>>> spam.setdefault('color',
+'black'
+>>> spam
+{'color': 'black', 'age': 5,
+>>> spam.setdefault('color',
+'black'
+>>> spam
+{'color': 'black', 'age': 5,
+'age': 5}
+'black')
+'name': 'Pooka'}
+'white')
+'name': 'Pooka'}
+
+If you import the pprint module into your programs, you’ll have access to
+the pprint() and pformat() functions that will “pretty print” a dictionary’s
+values. This is helpful when you want a cleaner display of the items in a
+dictionary than what print() provides. Modify the previous characterCount.py
+program and save it as prettyCharacterCount.py.
+import pprint
+message = 'It was a bright cold day in April, and the clocks were striking
+thirteen.'
+count = {}
+for character in message:
+count.setdefault(character, 0)
+count[character] = count[character] + 1
+pprint.pprint(count)
+
+
+>>> spam = 'Say hi to Bob\'s mother.'
+Python knows that since the single quote in Bob\'s has a backslash, it
+is not a single quote meant to end the string value. The escape characters
+\' and \" let you put single quotes and double quotes inside your strings,
+respectively.
+
+Escape character Prints as
+\' Single quote
+\" Double quote
+\t Tab
+\n Newline (line break)
+\\ Backslash
+
+
+You can place an r before the beginning quotation mark of a string to make
+it a raw string. A raw string completely ignores all escape characters and
+prints any backslash that appears in the string.
+>>> print(r'That is Carol\'s cat.')
+That is Carol\'s cat.
+
+
+Any quotes,
+tabs, or newlines in between the “triple quotes” are considered part of the
+string. Python’s indentation rules for blocks do not apply to lines inside a
+multiline string.
+
+print('''Dear Alice,
+Eve's cat has been arrested for catnapping, cat burglary, and extortion.
+Sincerely,
+Bob''')
+Save this program as catnapping.py and run it. The output will look
+like this:
+Dear Alice,
+Eve's cat has been arrested for catnapping, cat burglary, and extortion.
+Sincerely,
+Bob
+
+def spam():
+"""This is a multiline comment to help
+explain what the spam() function does."""
+print('Hello!')
+
+
+
+upper(), lower(), isupper(), and islower() String Methods
+
+isalpha() returns True if the string consists only of letters and is not blank.
+isalnum() returns True if the string consists only of letters and numbers
+and is not blank.
+isdecimal() returns True if the string consists only of numeric characters
+and is not blank.
+isspace() returns True if the string consists only of spaces, tabs, and new-
+lines and is not blank.
+istitle() returns True if the string consists only of words that begin with
+an uppercase letter followed by only lowercase letters.
+
+The startswith() and endswith() methods return True if the string value they
+are called on begins or ends (respectively) with the string passed to the
+method; otherwise, they return False .
+
+>>> ', '.join(['cats', 'rats', 'bats'])
+'cats, rats, bats'
+>>> ' '.join(['My', 'name', 'is', 'Simon'])
+'My name is Simon'
+>>> 'ABC'.join(['My', 'name', 'is', 'Simon'])
+'MyABCnameABCisABCSimon'
+
+>>> 'My name is Simon'.split()
+['My', 'name', 'is', 'Simon']
+>>> 'MyABCnameABCisABCSimon'.split('ABC')
+['My', 'name', 'is', 'Simon']
+>>> 'My name is Simon'.split('m')
+['My na', 'e is Si', 'on']
+
+The rjust() and ljust() string methods return a padded version of the
+string they are called on, with spaces inserted to justify the text. The first
+argument to both methods is an integer length for the justified string.
+Enter the following into the interactive shell:
+>>> 'Hello'.rjust(10)
+'
+Hello'
+>>> 'Hello'.rjust(20)
+'
+Hello'
+>>> 'Hello World'.rjust(20)
+'
+Hello World'
+>>> 'Hello'.ljust(10)
+'Hello
+'
+
+>>> 'Hello'.center(20)
+'
+Hello
+'
+>>> 'Hello'.center(20, '=')
+'=======Hello========'
+
+The lstrip() and rstrip() methods
+will remove whitespace characters from the left and right ends, respectively.
+
+The pyperclip module has copy() and paste() functions that can send text
+to and receive text from your computer’s clipboard. Sending the output of
+your program to the clipboard will make it easy to paste it to an email, word
+processor, or some other software.
+Pyperclip does not come with Python. To install it, follow the directions
+for installing third-party modules in Appendix A. After installing the
+pyperclip module, enter the following into the interactive shell:
+>>> import pyperclip
+>>> pyperclip.copy('Hello world!')
+>>> pyperclip.paste()
+'Hello world!'
+
+
+
